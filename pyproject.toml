@@ -1,0 +1,51 @@
+[project]
+name = "metabogeneva"
+version = "0.1.0"
+description = "Metabolomics data analysis utilities: common data tables and BaRCA classification"
+readme = "README.md"
+license = "GPL-3.0-only"
+license-files = ["LICENSE.txt"]
+authors = [
+    { name = "Santiago Codesido Sánchez" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "matplotlib>=3.11",
+    "numpy>=2.5",
+    "pandas>=3.1",
+    "scikit-learn>=1.9",
+]
+
+[project.optional-dependencies]
+notebook = ["ipywidgets>=8.1"]
+
+[dependency-groups]
+dev = [
+    "jupyter>=1.1",
+    "mypy>=2.4",
+    "pandas-stubs>=3.1",
+    "ruff>=0.17",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.ruff]
+target-version = "py312"
+extend-exclude = ["examples"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "NPY", "TID252", "N805"]
+ignore = ["B905", "E501", "E731", "E741", "NPY002"]
+
+[tool.ruff.lint.flake8-tidy-imports]
+ban-relative-imports = "all"
+
+[tool.mypy]
+python_version = "3.12"
+disallow_untyped_defs = true
+
+[[tool.mypy.overrides]]
+module = ["sklearn.*", "ipywidgets"]
+ignore_missing_imports = true
