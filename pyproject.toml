@@ -19,6 +19,9 @@ dependencies = [
 [project.optional-dependencies]
 notebook = ["ipywidgets>=8.1"]
 
+[project.urls]
+Repository = "https://github.com/metabogeneva/metabogeneva"
+
 [dependency-groups]
 dev = [
     "jupyter>=1.1",
