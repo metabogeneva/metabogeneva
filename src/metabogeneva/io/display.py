@@ -26,8 +26,10 @@ class IPythonMonitor(NullMonitor):
         self.log_field = Textarea(layout=Layout(width="75%", height="24ex"))
         display(VBox([self.state_field, self.log_field]))
         self.last_state_time = 0.0
+        self.latest_state = ""
 
     def state(self, text: str) -> None:
+        self.latest_state = text
         now = monotonic()
         if text and now - self.last_state_time < 0.1:
             return
@@ -35,4 +37,5 @@ class IPythonMonitor(NullMonitor):
         self.state_field.value = text
 
     def log(self, text: str) -> None:
+        self.state_field.value = self.latest_state
         self.log_field.value = self.log_field.value + text + "\n"
